@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ファッションサイト</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .hero {
+            background: url('https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo3.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .carousel-item img {
+            width: 100%;
+            height: 450px; /* カルーセル画像の高さを固定 */
+            object-fit: cover; /* 画像を枠に合わせて引き伸ばし */
+            object-position: top; /* 画像の表示位置を上部に合わせる */
+        }
+        .product-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .product-card img {
+            width: 100%;
+            height: 400px; /* 商品カード画像の高さを固定 */
+            object-fit: cover; /* 画像を枠に合わせて引き伸ばし */
+            object-position: top; /* 画像の表示位置を上部に合わせる */
+        }
+        .modal-content {
+            display: flex;
+            flex-direction: row;
+        }
+        .modal-img {
+            flex: 7;
+            overflow: hidden;
+        }
+        .modal-img img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px; /* モーダル全体の角を丸くする */
+        }
+        .modal-img {
+            width: 100%;
+            height: 530px; /* 商品カード画像の高さを固定 */
+            object-fit: cover; /* 画像を枠に合わせて引き伸ばし */
+            object-position: top; /* 画像の表示位置を上部に合わせる */
+            border-radius: 8px; /* 画像の角を丸くする */
+        }
+        .modal-description {
+            flex: 3;
+            padding: 20px;
+        }
+        .modal-description h5 {
+            margin-top: 0;
+        }
+        h1, p {
+            color: black;
+        }
+        .size-diagnosis-section {
+            background: url('https://media.vogue.co.jp/photos/5da59a344d9100000881373e/4:3/w_1200,h_900,c_limit/00001-Monique-Lhuillier-%20New-York-Bridal-Fall-2020-credit-KT-Merry.jpg') no-repeat top center;
+            padding: 40px 20px; /* 上下に40px、左右に20pxのパディング */
+            padding-top: 140px;
+            border-radius: 8px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            object-position: top; /* 画像の表示位置を上部に合わせる */
+        }
+        .size-diagnosis h2 {
+            margin-bottom: 20px;
+        }
+        .size-visualization-section {
+            background: url('https://i.pinimg.com/originals/f7/d2/e2/f7d2e2a36ffaae6f28da8684294d4f7e.jpg') no-repeat top center;
+            padding: 40px 20px; /* 上下に40px、左右に20pxのパディング */
+            padding-top: 140px;
+            border-radius: 8px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            object-position: top; /* 画像の表示位置を上部に合わせる */
+        }
+        .size-visualization h2 {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- ナビゲーションバー -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">FashionSite</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">ホーム</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">新着商品</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">セール</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">お問い合わせ</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- カルーセル -->
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-interval="3000">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://www.southcoastplaza.com/wp-content/uploads/2021/11/Photo-Sep-25-9-37-56-AM-scaled.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="https://media.istockphoto.com/id/1397185406/photo/portrait-of-woman-smiling-against-wall-with-palm-tree-shade.jpg?s=612x612&w=0&k=20&c=QnX-8KeN5NXpA00iDOHJ6usI0h8h69fbCmos2XRG78k=" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="https://onefabday.com/wp-content/uploads/2023/07/dXIMVWIsTM1.jpg?w=1024" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- ヒーローセクション -->
+    <div class="hero">
+        <div class="container">
+            <h1 class="display-4">最新のファッションコレクション</h1>
+            <p class="lead">今すぐチェックして、あなたのスタイルをアップデートしましょう！</p>
+            <a href="#main-content" class="btn btn-primary btn-lg">アイテムをチェックする</a>
+        </div>
+    </div>
+
+    <!-- 主なコンテンツ -->
+    <div id="main-content" class="container my-5">
+        <h2 class="text-center mb-4">おすすめ商品</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="product-card">
+                    <img src="https://www.desigual.com/dw/image/v2/BCVV_PRD/on/demandware.static/-/Sites-desigual-m-catalog/default/dwa19562d6/images/B2C/22SWVWX5_7019_2.jpg?sfrm=jpg&v=webp10&sw=375" alt="商品画像">
+                    <div class="p-3">
+                        <h5>Aライン</h5>
+                        <p class="text-muted">\50,000</p>
+                        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal" data-title="Aライン" data-img="https://www.desigual.com/dw/image/v2/BCVV_PRD/on/demandware.static/-/Sites-desigual-m-catalog/default/dwa19562d6/images/B2C/22SWVWX5_7019_2.jpg?sfrm=jpg&v=webp10&sw=375" data-description="クラシックなAラインのドレスは、どんな体型にもフィットし、美しいシルエットを作り出します。上質な素材とエレガントなデザインで、特別な日を一層引き立てます。">詳細</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="product-card">
+                    <img src="https://www.alinanova.com/cdn/shop/products/Tulle-Ball-Gown-Wedding-Dresses-Lace-Long-Sleeves-Off-Shoulder.jpg?v=1641821042" alt="商品画像">
+                    <div class="p-3">
+                        <h5>プリンセス</h5>
+                        <p class="text-muted">\80,000円</p>
+                        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal" data-title="プリンセス" data-img="https://www.alinanova.com/cdn/shop/products/Tulle-Ball-Gown-Wedding-Dresses-Lace-Long-Sleeves-Off-Shoulder.jpg?v=1641821042" data-description="ロマンチックなプリンセスドレスは、豪華なチュールとレースが特徴。特別な日に最適な、夢のようなスタイルです。">詳細</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="product-card">
+                    <img src="https://d1flfk77wl2xk4.cloudfront.net/Assets/81/537/XL_p0198753781.jpg" alt="商品画像">
+                    <div class="p-3">
+                        <h5>マーメイド</h5>
+                        <p class="text-muted">\70,000</p>
+                        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal" data-title="マーメイド" data-img="https://d1flfk77wl2xk4.cloudfront.net/Assets/81/537/XL_p0198753781.jpg" data-description="スタイリッシュなマーメイドドレスは、身体のラインを美しく強調します。シンプルでありながら、洗練された印象を与えるデザインです。">詳細</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="product-card">
+                    <img src="https://n.nordstrommedia.com/id/sr3/522f31a1-095d-4a28-a87b-9a0ac10d3664.jpeg?h=365&w=240&dpr=2" alt="商品画像">
+                    <div class="p-3">
+                        <h5>エンパイア</h5>
+                        <p class="text-muted">\40,000</p>
+                        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal" data-title="エンパイア" data-img="https://n.nordstrommedia.com/id/sr3/522f31a1-095d-4a28-a87b-9a0ac10d3664.jpeg?h=365&w=240&dpr=2" data-description="エンパイアスタイルのドレスは、胸下から広がるシルエットが特徴。リラックスした着心地と、エレガントな外観を兼ね備えています。">詳細</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="product-card">
+                    <img src="https://i.pinimg.com/736x/ce/b1/8b/ceb18b174b30dcd0adf623ee3d72b44a.jpg" alt="商品画像">
+                    <div class="p-3">
+                        <h5>スレンダー</h5>
+                        <p class="text-muted">\60,000</p>
+                        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal" data-title="スレンダー" data-img="https://i.pinimg.com/736x/ce/b1/8b/ceb18b174b30dcd0adf623ee3d72b44a.jpg" data-description="スレンダーラインのドレスは、スリムでシャープな印象を与えます。シンプルでありながらも、洗練されたデザインが特徴です。">詳細</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="product-card">
+                    <img src="https://img07.shop-pro.jp/PA01408/603/product/158426999.jpg?cmsp_timestamp=20221108151237" alt="商品画像">
+                    <div class="p-3">
+                        <h5>ミニミモレ</h5>
+                        <p class="text-muted">\30,000</p>
+                        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal" data-title="ミニミモレ" data-img="https://img07.shop-pro.jp/PA01408/603/product/158426999.jpg?cmsp_timestamp=20221108151237" data-description="ミニミモレドレスは、カジュアルでありながらもエレガントさを保つデザイン。日常から特別なイベントまで幅広く活躍します。">詳細</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- サイズ診断セクション -->
+        <div class="size-diagnosis-section">
+            <div class="container">
+                <h2 class="text-center">ドレスサイズ診断</h2>
+                <p class="text-center">自分のサイズ（バスト、ウエスト、ヒップ、肩幅）を入力することで、あなたにぴったりのドレスサイズがわかります。下のリンクから診断を始めましょう。</p>
+                <div class="text-center">
+                    <a href="http://peppermint.starfree.jp/PLACOLE/dress_sizes.html" class="btn btn-primary btn-lg">ドレスサイズ診断を始める</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- サイズ視覚化セクション -->
+        <div class="size-visualization-section">
+            <div class="container">
+                <h2 class="text-center">ドレスサイズの視覚化</h2>
+                <p class="text-center">試着時のイメージを視覚的に確認できるイラストでは、各サイズの違いを比較することができます。自分に合ったサイズ感をチェックして、イメージを具体化しましょう。</p>
+                <div class="text-center">
+                    <a href="http://peppermint.starfree.jp/PLACOLE/index2.php" class="btn btn-primary btn-lg">ドレスサイズの視覚化を始める</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 商品詳細モーダル -->
+    <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-img">
+                    <img src="" id="modalImg" alt="商品画像">
+                </div>
+                <div class="modal-description">
+                    <h5 id="modalTitle">商品名</h5>
+                    <p id="modalDescription">商品詳細説明</p>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- フッター -->
+    <footer class="bg-dark text-white text-center py-4">
+        <p>&copy; 2024 FashionSite. All rights reserved.</p>
+        <p>123 Fashion St, Tokyo, Japan</p>
+        <a href="#" class="text-white">プライバシーポリシー</a> | 
+        <a href="#" class="text-white">利用規約</a>
+    </footer>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery (optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- カスタムスクリプト -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var myCarousel = document.querySelector('#carouselExampleIndicators');
+            var carousel = new bootstrap.Carousel(myCarousel, {
+                interval: 3000
+            });
+
+            var productModal = document.getElementById('productModal');
+            productModal.addEventListener('show.bs.modal', function (event) {
+                var button = event.relatedTarget; // 詳細ボタンがクリックされたとき
+                var imgSrc = button.getAttribute('data-img');
+                var description = button.getAttribute('data-description');
+                var title = button.getAttribute('data-title'); // data-title を取得
+                
+                var modalImg = productModal.querySelector('#modalImg');
+                var modalDescription = productModal.querySelector('#modalDescription');
+                var modalTitle = productModal.querySelector('#modalTitle'); // モーダルタイトルの要素
+                
+                modalImg.src = imgSrc;
+                modalDescription.textContent = description;
+                modalTitle.textContent = title; // タイトルを更新
+            });
+        });
+    </script>
+</body>
+</html>
