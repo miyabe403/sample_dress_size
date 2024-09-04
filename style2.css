@@ -1,0 +1,57 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.container {
+    text-align: center;
+}
+
+.size-buttons {
+    margin-bottom: 20px;
+}
+
+.size-buttons button {
+    margin: 0 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.dress-controls {
+    margin-bottom: 20px;
+}
+
+.dress-container {
+    width: 300px; /* 外枠の幅を固定 */
+    height: auto; /* 高さは自動調整 */
+    margin: 0 auto; /* 中央寄せ */
+    border: 1px solid #ddd; /* 外枠のスタイリング */
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #fff; /* 背景色を白に */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* 相対位置に設定 */
+    background-image: url('images/style.jpg'); /* 背景画像 */
+    background-size: cover; /* 背景画像がコンテナ全体をカバー */
+    background-position: center; /* 背景画像を中央に配置 */
+    background-position: center 8px; /* 背景画像を下に6pxずらす */
+}
+
+.dress-container img {
+    position: relative; /* 相対位置に設定 */
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    height: auto;
+    transition: width 0.3s ease;
+    z-index: 10; /* 画像が背景の上に表示されるように設定 */
+}
