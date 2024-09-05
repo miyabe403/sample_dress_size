@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SizeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,21 +18,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+// ホームページのルート
 Route::get('/', function () {
     return response()->file(public_path('index.html'));
 });
 
-
+// サイズ診断ページのルート
 Route::get('/dress-diagnosis', function () {
     return response()->file(public_path('dress_sizes.html')); // dress-diagnosis.html を作成する必要があります
 });
 
+// サイズ視覚化ページのルート
 Route::get('/size-visualization', function () {
     return response()->file(public_path('index2.php')); // size-visualization.html を作成する必要があります
 });
 
-use App\Http\Controllers\SizeController;
-
-// サイズ診断のルート
+// サイズ診断APIのルート
 Route::get('/size-diagnosis', [SizeController::class, 'diagnose']);
