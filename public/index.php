@@ -1,60 +1,49 @@
 <?php
+// CORS ヘッダーの設定
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
 
-/**
- * Laravel - A PHP Framework For Web Artisans
- *
- * @package  Laravel
- * @author   Taylor Otwell <taylor@laravel.com>
- */
+// HTTP OPTIONS リクエストに対応する
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    header('HTTP/1.1 200 OK');
+    exit;
+}
 
-define('LARAVEL_START', microtime(true));
+// サイズデータの読み込み
+$sizes_file = 'dress_sizes.json';
+if (!file_exists($sizes_file)) {
+    header('HTTP/1.1 404 Not Found');
+    echo json_encode(['error' => 'サイズデータファイルが見つかりません']);
+    exit;
+}
 
-/*
-|--------------------------------------------------------------------------
-| Register The Auto Loader
-|--------------------------------------------------------------------------
-|
-| Composer provides a convenient, automatically generated class loader for
-| our application. We just need to utilize it! We'll simply require it
-| into the script here so that we don't have to worry about manual
-| loading any of our classes later on. It feels great to relax.
-|
-*/
+$sizes_data = file_get_contents($sizes_file);
+$sizes = json_decode($sizes_data, true);
 
-require __DIR__.'/../vendor/autoload.php';
+// JSONエラーチェック
+if (json_last_error() !== JSON_ERROR_NONE) {
+    header('HTTP/1.1 500 Internal Server Error');
+    echo json_encode(['error' => 'サイズデータのJSONエラー']);
+    exit;
+}
 
-/*
-|--------------------------------------------------------------------------
-| Turn On The Lights
-|--------------------------------------------------------------------------
-|
-| We need to illuminate PHP development, so let us turn on the lights.
-| This bootstraps the framework and gets it ready for use, then it
-| will load up this application so that we can run it and send
-| the responses back to the browser and delight our users.
-|
-*/
+// 入力サイズの取得
+$bust = isset($_GET['bust']) ? (int)$_GET['bust'] : 0;
+$waist = isset($_GET['waist']) ? (int)$_GET['waist'] : 0;
+$hip = isset($_GET['hip']) ? (int)$_GET['hip'] : 0;
+$shoulder = isset($_GET['shoulder']) ? (int)$_GET['shoulder'] : 0;
 
-$app = require_once __DIR__.'/../bootstrap/app.php';
+// サイズ判定のロジック
+$best_fit = null;
+foreach ($sizes as $size) {
+    if ($bust <= $size['bust'] && $waist <= $size['waist'] && $hip <= $size['hip'] && $shoulder <= $size['shoulder']) {
+        $best_fit = $size;
+        break;
+    }
+}
 
-/*
-|--------------------------------------------------------------------------
-| Run The Application
-|--------------------------------------------------------------------------
-|
-| Once we have the application, we can handle the incoming request
-| through the kernel, and send the associated response back to
-| the client's browser allowing them to enjoy the creative
-| and wonderful application we have prepared for them.
-|
-*/
-
-$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
-
-$response = $kernel->handle(
-    $request = Illuminate\Http\Request::capture()
-);
-
-$response->send();
-
-$kernel->terminate($request, $response);
+// 結果の返却
+header('Content-Type: application/json');
+echo json_encode($best_fit ? $best_fit : ["size" => "合うサイズが見つかりません"]);
+?>
