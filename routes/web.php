@@ -30,3 +30,8 @@ Route::get('/dress-diagnosis', function () {
 Route::get('/size-visualization', function () {
     return response()->file(public_path('index2.php')); // size-visualization.html を作成する必要があります
 });
+
+use App\Http\Controllers\SizeController;
+
+// サイズ診断のルート
+Route::get('/size-diagnosis', [SizeController::class, 'diagnose']);
