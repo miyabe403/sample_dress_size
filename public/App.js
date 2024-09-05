@@ -10,7 +10,7 @@ const App = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch(`http://peppermint.starfree.jp/PLACOLE/index.php?bust=${bust}&waist=${waist}&hip=${hip}&shoulder=${shoulder}`);
+    const response = await fetch(`https://127.0.0.1:8080/size-diagnosis?bust=${bust}&waist=${waist}&hip=${hip}&shoulder=${shoulder}`);
     const data = await response.json();
 
     setSize(data.size);
