@@ -32,8 +32,6 @@
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,PHP,SQL
-- フレームワーク：Laravel
-- JSライブラリ：jQuery
 - IDE：Cloud9
 
 ## 使用素材
